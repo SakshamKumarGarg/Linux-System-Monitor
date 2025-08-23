@@ -17,6 +17,15 @@ It displays real-time **CPU, memory, disk, uptime, top processes, and network us
 
 ---
 
+## 🖼️ Demo
+Here is a screenshot of the system monitor in action:
+
+![Demo Screenshot](screenshot.png)
+
+> Note: Make sure `screenshot.png` is in the same folder as this README.md
+
+---
+
 ## 📦 Installation
 
 Clone this repository:
