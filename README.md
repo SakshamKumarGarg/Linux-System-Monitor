@@ -23,3 +23,6 @@ Clone this repository:
 ```bash
 git clone https://github.com/SakshamKumarGarg/Linux-System-Monitor.git
 cd Linux-System-Monitor
+
+## Demo
+![Demo Screenshot](Screenshot 2025-08-23 124832.png)
