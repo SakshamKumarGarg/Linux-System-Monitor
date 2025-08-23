@@ -24,6 +24,3 @@ Clone this repository:
 git clone https://github.com/SakshamKumarGarg/Linux-System-Monitor.git
 cd Linux-System-Monitor
 
-## Demo
-![Demo Screenshot](screenshot.png)
-
