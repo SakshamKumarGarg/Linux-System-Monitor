@@ -12,7 +12,7 @@ It displays real-time **CPU, memory, disk, uptime, top processes, and network us
 - ✅ System uptime.  
 - ✅ Top 5 processes by **CPU** and **Memory**.  
 - ✅ Network statistics (**RX/TX bytes**) for `eth0`.  
-- ✅ Auto-refresh every 2 seconds.  
+- ✅ Auto-refresh every 4 seconds.  
 - ✅ Quit anytime with `q`.  
 
 ---
