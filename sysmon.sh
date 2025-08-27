@@ -23,7 +23,7 @@ do
     mem_total=$(free -m | awk 'NR==2 {print $2}')
     mem_used=$(free -m | awk 'NR==2 {print $3}')
     mem_free=$(free -m | awk 'NR==2 {print $4}')
-    echo "Memory Usage : $mem_used MB / $mem_total MB and Free memory: $mem_free"
+    echo "Memory Usage : $mem_used MB / $mem_total MB and Free memory: $mem_free MB"
 
     # Showing Disk usage
     disk_total=$(df -BG / | awk 'NR==2 {print $2}')
@@ -51,7 +51,7 @@ do
     echo
 
     echo "Refreshing in 4s... (Press 'q' + Enter to quit)"
-    # Wait for 2 seconds or read input
+    # Wait for 4 seconds or read input
     read -t 4 -n 1 key
     if [[ $key == "q" ]]; then
 	echo
