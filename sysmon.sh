@@ -65,7 +65,7 @@ do
     timestamp=$(date '+%Y-%m-%d %H:%M:%S')
 
     # === CSV Logging ===
-    echo "$timestamp,$cpu_usage,$mem_used,$mem_total,$disk_used,$disk_total,$rx_bytes,$tx_bytes" >> sysmon_report.csv
+    echo "$timestamp,$cpu_usage,$mem_used,$mem_total,$disk_used,$disk_total,$rx_bytes,$tx_bytes" >> "$CSV_file"
 
 
     echo "Refreshing in 4s... (Press 'q' + Enter to quit)"
@@ -73,7 +73,7 @@ do
     read -t 4 -n 1 key
     if [[ $key == "q" ]]; then
 	echo
-        echo "Exiting System Monitor..."
+        echo "Exiting System Monitor... Report saved at $CSV_file"
         break
     fi
 done
