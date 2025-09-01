@@ -3,9 +3,7 @@
 
 CSV_file="sysmon_report.csv"
 
-if [ ! -f "$CSV_file" ]; then
-    echo "timestamp,cpu_usage,mem_used,mem_total,disk_used,disk_total,rx_bytes,tx_bytes" > "$CSV_file"
-fi
+echo "timestamp,cpu_usage,mem_used,mem_total,disk_used,disk_total,rx_bytes,tx_bytes" > "$CSV_file"
 
 while true
 do

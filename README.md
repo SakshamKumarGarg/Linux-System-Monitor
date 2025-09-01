@@ -21,10 +21,7 @@ It displays real-time **CPU, memory, disk, uptime, top processes, and network us
 Here is a screenshot of the system monitor in action:
 
 ![Demo Screenshot](screenshot.png)
-![CPU Usage](cpu_usage.png)
-![Memory Usage](memory_usage.png)
-![Disk Usage](disk_usage.png)
-![Network Usage](network_usage.png)
+![System Summary](sysmon_summary.png)
 
 ---
 
