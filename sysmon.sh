@@ -1,4 +1,7 @@
 #!/bin/bash
+# activate venv
+source .venv/bin/activate
+
 # sysmon.sh System Monitor Control
 
 CSV_file="sysmon_report.csv"
@@ -76,3 +79,5 @@ do
     fi
 done
 
+echo "Generating graphs..."
+python3 analyze_sysmon.py
