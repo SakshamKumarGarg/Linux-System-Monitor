@@ -1,6 +1,12 @@
 #!/bin/bash
 # sysmon.sh System Monitor Control
 
+report_file="sysmon_report.csv"
+
+if [ ! -f "$report_file" ]; then
+    echo "timestamp,cpu_usage,mem_used,mem_total,disk_used,disk_total,rx_bytes,tx_bytes,uptime" > "$report_file"
+fi
+
 while true
 do
     clear
@@ -16,14 +22,20 @@ do
         color=$(tput setaf 3)   # Yellow
     else
         color=$(tput setaf 1)   # Red
+	echo "$(tput setaf 1)⚠️  HIGH CPU Usage Detected!$(tput sgr0)"
     fi
+
     echo "CPU Usage: ${color}${cpu_usage}%$(tput sgr0)"
 
     # Showing Memory usage
     mem_total=$(free -m | awk 'NR==2 {print $2}')
     mem_used=$(free -m | awk 'NR==2 {print $3}')
     mem_free=$(free -m | awk 'NR==2 {print $4}')
+    mem_percent=$(( (mem_used * 100) / mem_total ))
     echo "Memory Usage : $mem_used MB / $mem_total MB and Free memory: $mem_free MB"
+    if [ $mem_percent -gt 80 ]; then
+        echo "$(tput setaf 1)⚠️  HIGH Memory Usage Detected! ($mem_percent%)$(tput sgr0)"
+    fi
 
     # Showing Disk usage
     disk_total=$(df -BG / | awk 'NR==2 {print $2}')
@@ -49,6 +61,31 @@ do
     tx_bytes=$(cat /proc/net/dev | grep "eth0" | awk '{print $10}')
     echo "Network (eth0): RX = ${rx_bytes} bytes, TX = ${tx_bytes} bytes"
     echo
+
+    timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+
+    # === CSV Logging ===
+    echo "$timestamp,$cpu_usage,$mem_used,$mem_total,$disk_used,$disk_total,$rx_bytes,$tx_bytes" >> sysmon_report.csv
+
+    # === JSON Logging ===
+    cat <<EOF >> sysmon_report.json
+{
+  "time": "$timestamp",
+  "cpu": $cpu_usage,
+  "memory": {
+    "used": $mem_used,
+    "total": $mem_total
+  },
+  "disk": {
+    "used": "$disk_used",
+    "total": "$disk_total"
+  },
+  "network": {
+    "rx_bytes": $rx_bytes,
+    "tx_bytes": $tx_bytes
+  }
+},
+EOF
 
     echo "Refreshing in 4s... (Press 'q' + Enter to quit)"
     # Wait for 4 seconds or read input
