@@ -1,10 +1,10 @@
 #!/bin/bash
 # sysmon.sh System Monitor Control
 
-report_file="sysmon_report.csv"
+CSV_file="sysmon_report.csv"
 
-if [ ! -f "$report_file" ]; then
-    echo "timestamp,cpu_usage,mem_used,mem_total,disk_used,disk_total,rx_bytes,tx_bytes,uptime" > "$report_file"
+if [ ! -f "$CSV_file" ]; then
+    echo "timestamp,cpu_usage,mem_used,mem_total,disk_used,disk_total,rx_bytes,tx_bytes" > "$CSV_file"
 fi
 
 while true
@@ -67,25 +67,6 @@ do
     # === CSV Logging ===
     echo "$timestamp,$cpu_usage,$mem_used,$mem_total,$disk_used,$disk_total,$rx_bytes,$tx_bytes" >> sysmon_report.csv
 
-    # === JSON Logging ===
-    cat <<EOF >> sysmon_report.json
-{
-  "time": "$timestamp",
-  "cpu": $cpu_usage,
-  "memory": {
-    "used": $mem_used,
-    "total": $mem_total
-  },
-  "disk": {
-    "used": "$disk_used",
-    "total": "$disk_total"
-  },
-  "network": {
-    "rx_bytes": $rx_bytes,
-    "tx_bytes": $tx_bytes
-  }
-},
-EOF
 
     echo "Refreshing in 4s... (Press 'q' + Enter to quit)"
     # Wait for 4 seconds or read input
