@@ -32,11 +32,11 @@ It logs all collected stats into a CSV file (`sysmon_report.csv`) for later anal
 ---
 
 ## 📂 Project Structure
-Linux-System-Monitor/
-── sysmon.sh # Main Bash script
-── sysmon_report.csv # Auto-generated system stats log
-── analyze_sysmon.py # Python script for plotting CSV data
-── README.md # Documentation
+Linux-System-Monitor:- 
+- sysmon.sh # Main Bash script
+- sysmon_report.csv # Auto-generated system stats log
+- analyze_sysmon.py # Python script for plotting CSV data
+- README.md # Documentation
 
 ---
 
