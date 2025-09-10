@@ -16,7 +16,7 @@ do
     echo
 
     # cpu usage in %
-    cpu_usage=$(top -bn1 | grep "Cpu(s)" | awk '{print $2 + $4}')
+    cpu_usage=$(top -bn1 | grep "Cpu(s)" | sed "s/,/ /g" | awk '{print $2 + $4}')
     if (( $(echo "$cpu_usage < 50" | bc -l) )); then
         color=$(tput setaf 2)   # Green
     elif (( $(echo "$cpu_usage < 80" | bc -l) )); then
